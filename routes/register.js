@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 
+
+
 // Show Register Form
 router.get("/register", (req, res) => {
   res.render("auth/register", { error: null });

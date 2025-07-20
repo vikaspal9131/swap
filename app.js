@@ -7,13 +7,20 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 
+
+
 // MongoDB
 require("./config/db")();
 
 // Middleware
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.urlencoded({ extended: true })); // To read form data
+
+// Serve static files from 'public' folder
+
+
+
 
 
 

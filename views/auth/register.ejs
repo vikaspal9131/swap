@@ -2,29 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Register | Skill Swap</title>
+  <title>Register</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { darkMode: 'class' };
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 </head>
-<body class="dark bg-[#0d1117] text-white min-h-screen flex flex-col">
+<body class="dark bg-[#0A0A0A] text-white min-h-screen flex flex-col font-[Outfit] font-medium">
 
-  <!-- Header -->
-  <nav class="p-4 sticky top-0 z-50 backdrop-blur-sm bg-[#161b22] bg-opacity-90 shadow">
-    <div class="flex justify-between items-center max-w-6xl mx-auto">
-      <a href="/" class="text-2xl font-bold text-white">Skill Swap</a>
-      <div class="space-x-4 text-sm">
-        <a href="/" class="text-blue-400 hover:underline">Home</a>
-        <a href="/login" class="hover:text-blue-400">Login</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Form -->
+  <!-- Main Content -->
   <main class="flex-grow flex items-center justify-center px-4">
-    <div class="w-full max-w-sm p-6 bg-[#161b22] rounded-xl shadow-lg border border-gray-700 mt-8">
-      <h2 class="text-3xl font-bold mb-6 text-center text-white">Register</h2>
+    <div class="w-full max-w-md bg-[#171717] p-8 rounded-2xl shadow-xl border-[1px] border-[#424242] mt-10">
+      <div class="flex justify-between items-center mb-1">
+        <h2 class="text-lg font-semibold">Create an account</h2>
+        <a href="/login" class="text-sm text-white hover:underline font-[300]">Login</a>
+      </div>
+      <p class="text-sm text-[#C8D4D4] mb-6 font-[300]">Enter your details below to create your account</p>
 
       <% if (error) { %>
         <div class="bg-red-600 text-white p-2 rounded mb-4 text-sm text-center">
@@ -33,35 +26,35 @@
       <% } %>
 
       <form action="/register" method="POST" onsubmit="return syncSkills()" class="space-y-4">
-        <input type="text" name="name" placeholder="Username"
-          class="w-full bg-[#0d1117] border border-gray-600 text-white px-3 py-2 rounded" required>
+        <input type="text" name="name" placeholder="Username" autocomplete="off"
+          class="w-full bg-[#212121] border border-[#171717] text-white placeholder-[#C8D4D4] font-[200] px-4 py-2 rounded focus:outline-none" required>
 
-        <input type="email" name="email" placeholder="Email"
-          class="w-full bg-[#0d1117] border border-gray-600 text-white px-3 py-2 rounded" required>
+        <input type="email" name="email" placeholder="example12@gmail.com" autocomplete="off"
+          class="w-full bg-[#212121] border border-[#171717] text-white placeholder-[#C8D4D4] font-[200] px-4 py-2 rounded focus:outline-none" required>
 
-        <input type="password" name="password" placeholder="Password"
-          class="w-full bg-[#0d1117] border border-gray-600 text-white px-3 py-2 rounded" required>
+        <input type="password" name="password" placeholder="••••••••"
+          class="w-full bg-[#212121] border border-[#171717] text-white placeholder-[#C8D4D4] font-[200] px-4 py-2 rounded focus:outline-none" required>
 
         <!-- Skills Offered -->
         <div>
-          <label class="text-sm block mb-1">Skills you offer</label>
-          <div class="flex flex-wrap gap-2 mb-2" id="skillsOfferedContainer"></div>
+          <label class="text-sm block mb-1 font-[300]">Skills you offer</label>
+          <div class="max-h-[60px] overflow-x-auto overflow-y-auto whitespace-nowrap flex flex-wrap gap-2 mb-1" id="skillsOfferedContainer"></div>
           <input type="text" id="skillsOfferedInput" placeholder="Type and press Enter"
-            class="w-full bg-[#0d1117] border border-gray-600 text-white px-3 py-2 rounded" />
+            class="w-full bg-[#212121] border border-[#171717] text-white placeholder-[#C8D4D4] font-[200] px-4 py-2 rounded focus:outline-none" />
           <input type="hidden" name="skillsOffered" id="skillsOfferedHidden">
         </div>
 
         <!-- Skills Wanted -->
         <div>
-          <label class="text-sm block mb-1">Skills you want</label>
-          <div class="flex flex-wrap gap-2 mb-2" id="skillsWantedContainer"></div>
+          <label class="text-sm block mb-1 font-[300]">Skills you want</label>
+          <div class="max-h-[60px] overflow-x-auto overflow-y-auto whitespace-nowrap flex flex-wrap gap-2 mb-2  " id="skillsWantedContainer"></div>
           <input type="text" id="skillsWantedInput" placeholder="Type and press Enter"
-            class="w-full bg-[#0d1117] border border-gray-600 text-white px-3 py-2 rounded" />
-          <input type="hidden" name="skillsWanted" id="skillsWantedHidden">
+            class="w-full bg-[#212121] border-1 border-[#171717] text-white placeholder-[#C8D4D4] font-[200] px-4 py-2 rounded focus:outline-none  " />
+          <input autocomplete="off" type="hidden" name="skillsWanted" id="skillsWantedHidden">
         </div>
 
         <button type="submit"
-          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition">
+          class="w-full bg-gray-100 text-black  py-2 rounded hover:bg-white transition">
           Register
         </button>
       </form>
@@ -69,66 +62,7 @@
   </main>
 
   <!-- JS -->
-  <script>
-    const skillsOffered = [], skillsWanted = [];
-
-    const offeredInput = document.getElementById('skillsOfferedInput');
-    const offeredContainer = document.getElementById('skillsOfferedContainer');
-    const offeredHidden = document.getElementById('skillsOfferedHidden');
-
-    const wantedInput = document.getElementById('skillsWantedInput');
-    const wantedContainer = document.getElementById('skillsWantedContainer');
-    const wantedHidden = document.getElementById('skillsWantedHidden');
-
-    function addSkill(skill, list, container) {
-      if (!skill || list.includes(skill)) return;
-      list.push(skill);
-
-      const tag = document.createElement('div');
-      tag.className = 'bg-blue-700 px-3 py-1 rounded-full flex items-center text-sm';
-      tag.innerHTML = `
-        <span>${skill}</span>
-        <button type="button" class="ml-2 text-white hover:text-red-400" onclick="removeSkill('${skill}', '${container.id}')">✕</button>
-      `;
-      tag.dataset.value = skill;
-      container.appendChild(tag);
-    }
-
-    function removeSkill(skill, containerId) {
-      const container = document.getElementById(containerId);
-      const list = containerId === 'skillsOfferedContainer' ? skillsOffered : skillsWanted;
-
-      const index = list.indexOf(skill);
-      if (index > -1) list.splice(index, 1);
-
-      const tag = [...container.children].find(tag => tag.dataset.value === skill);
-      if (tag) container.removeChild(tag);
-    }
-
-    function syncSkills() {
-      offeredHidden.value = skillsOffered.join(',');
-      wantedHidden.value = skillsWanted.join(',');
-      return true;
-    }
-
-    offeredInput.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        const skill = offeredInput.value.trim();
-        addSkill(skill, skillsOffered, offeredContainer);
-        offeredInput.value = '';
-      }
-    });
-
-    wantedInput.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        const skill = wantedInput.value.trim();
-        addSkill(skill, skillsWanted, wantedContainer);
-        wantedInput.value = '';
-      }
-    });
-  </script>
-
+<script src="/register.js"></script>
+</script>
 </body>
 </html>

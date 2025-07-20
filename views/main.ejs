@@ -6,102 +6,35 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      transition: background 0.5s ease, color 0.5s ease;
-    }
 
-    .light {
-      background: #f9fafb;
-      color: #1a202c;
-    }
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
-    .dark {
-      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-      color: #e2e8f0;
-    }
-
-    .main-nav {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .dark .main-nav {
-      background-color: #1a202c;
-    }
-
-    .light .main-nav {
-      background-color: #ffffff;
-      border-color: rgba(0, 0, 0, 0.05);
-    }
-
-    .card-gradient {
-      transition: all 0.3s ease;
-    }
-
-    .dark .card-gradient {
-      background: linear-gradient(145deg, #2d3748, #4a5568);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .light .card-gradient {
-      background: #ffffff;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
-
-    .input-glow:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
-    }
-
-    .btn-primary {
-      background: linear-gradient(45deg, #4299e1, #63b3ed);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 15px rgba(66, 153, 225, 0.4);
-    }
-
-    .btn-secondary {
-      background-color: #e53e3e;
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 15px rgba(229, 62, 62, 0.4);
-    }
-
-    .modal-content {
-      animation: fadeInScale 0.3s ease-out forwards;
-    }
-
-    @keyframes fadeInScale {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-  </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  
 </head>
-<body class="min-h-screen light">
+<body class="min-h-screen bg-[#F8F8F8] font-[Outfit]">
   <div class="container mx-auto px-4 md:px-8">
-    <nav class="main-nav p-4 sticky top-0 z-50 backdrop-blur-lg bg-opacity-70 shadow-lg rounded-b-xl">
-      <div class="flex justify-between items-center">
-        <a href="/" class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 animate-pulse">Skill Swap</a>
+
+    
+    <nav class="main-nav flex items-center justify-center p-4 sticky top-0 z-50 backdrop-blur-lg bg-opacity-70">
+      <div class="flex justify-between items-center w-[80rem]">
+        <a href="/" class="text-1xl text-black ">
+         <i class="ri-blaze-line"></i> Swap
+        </a> 
         <div class="flex items-center space-x-6">
-          <a href="/" class="text-lg font-medium text-blue-600 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-500 transition-colors duration-300">Home</a>
+          <a href="/" class="text-[14px] font-[400]">Home</a>
+          <a href="/" class="text-[14px]">Request</a>
+          <a href="/" class="text-[14px]">Dashbord</a>
+
           <% if (user) { %>
             <a href="/profile" class="text-lg font-medium text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-300">Profile</a>
             <form action="/logout" method="POST">
-              <button type="submit" class="text-lg font-medium text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-600 transition-colors duration-300 btn-secondary px-4 py-1 rounded-full">Logout</button>
+              <button type="submit" class="text-lg font-medium ">Logout</button>
             </form>
           <% } else { %>
-            <a href="/login" class="text-lg font-medium text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-300">Login</a>
+            <a href="/login" class="text-[14px] hover:text-blue-500 transition-colors duration-300">Login</a>
           <% } %>
           <button id="theme-toggle" type="button" class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg text-sm p-2 transition-colors duration-300">
             <i class="fas fa-adjust text-lg"></i>
@@ -111,7 +44,7 @@
     </nav>
 
     <header class="text-center my-16">
-      <h1 class="text-6xl font-extrabold text-black dark:text-white leading-tight">Find Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-blue-500">Skill Match</span></h1>
+      <h1 class="text-6xl font-semibold text-black dark:text-black leading-tight">Find Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-blue-500">Skill Match</span></h1>
       <p class="mt-4 text-xl text-gray-600 dark:text-gray-400">Unlock new possibilities through shared knowledge.</p>
 
       <div class="mt-12 max-w-3xl mx-auto">
@@ -203,96 +136,7 @@
     </div>
   </div>
 
-  <script>
-    const popup = document.getElementById("popupModal");
-    const form = document.getElementById("swapForm");
-    const wantedSkillsSelect = document.getElementById("wantedSkillsSelect");
 
-    function openPopup(userId, skillsWantedJson) {
-      try {
-        const skills = JSON.parse(skillsWantedJson);
-        form.action = `/swap-request/${userId}`;
-        wantedSkillsSelect.innerHTML = "";
-        if (skills.length === 0) {
-          wantedSkillsSelect.innerHTML = `<option disabled selected>No skills listed</option>`;
-        } else {
-          skills.forEach(skill => {
-            const option = document.createElement("option");
-            option.value = skill;
-            option.textContent = skill;
-            wantedSkillsSelect.appendChild(option);
-          });
-        }
-        popup.classList.remove("hidden");
-      } catch (err) {
-        alert("⚠️ Failed to load skills. Please try again.");
-      }
-    }
-
-    function closePopup() {
-      popup.classList.add("hidden");
-      form.action = "#";
-      wantedSkillsSelect.innerHTML = "";
-      form.reset();
-    }
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closePopup();
-    });
-
-    popup.addEventListener("click", (e) => {
-      if (e.target === popup) closePopup();
-    });
-
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    if (themeToggleBtn) {
-      themeToggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        document.body.classList.toggle('light');
-        localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
-      });
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark") {
-        document.body.classList.add("dark");
-        document.body.classList.remove("light");
-      }
-    }
-
-    const searchInput = document.getElementById("searchInput");
-    const phrases = [
-      "Search for 'Web Development'",
-      "Search for 'Photography'",
-      "Search for 'Language Exchange'",
-      "Search for 'Graphic Design'",
-      "Search for 'Public Speaking'"
-    ];
-
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let currentText = '';
-    let isDeleting = false;
-
-    function typePlaceholder() {
-      const fullText = phrases[phraseIndex];
-      currentText = isDeleting
-        ? fullText.substring(0, charIndex--)
-        : fullText.substring(0, charIndex++);
-
-      if (!searchInput.value) searchInput.placeholder = currentText;
-
-      if (!isDeleting && charIndex === fullText.length) {
-        isDeleting = true;
-        setTimeout(typePlaceholder, 1800);
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        setTimeout(typePlaceholder, 500);
-      } else {
-        setTimeout(typePlaceholder, isDeleting ? 30 : 100);
-      }
-    }
-
-    typePlaceholder();
-  </script>
 </body>
+<script src="/main.js"></script>
 </html>
