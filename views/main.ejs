@@ -124,13 +124,14 @@
 
   <!-- Popup Modal (no changes needed here) -->
   <div id="popupModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-70 flex items-center justify-center p-4 font-[Outfit]">
-    <div class="bg-[#FFFFFF] text-black p-8 rounded-[5px] w-full max-w-lg relative modal-content shadow-2xl border border-gray-300 dark:border-gray-700">
+
+    <div class="bg-[#FFFFFF] text-black p-[25px] rounded-[5px] relative modal-content ">
       <button onclick="closePopup()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl transition-colors duration-200">&times;</button>
       <form id="swapForm" method="POST">
-        <h3 class="text-3xl font-bold mb-6 text-center text-black">Send Swap Request</h3>
+        <h3 class="text-xl font-semibold  text-start text-black font-[Outfit]">Send Swap Request</h3>
         <div class="mb-5">
-          <label for="offeredSkillSelect" class="block text-lg mb-2 text-black">Choose one of your offered skills</label>
-          <select name="offeredSkill" id="offeredSkillSelect" class="border-[1px]  " required>
+          <label for="offeredSkillSelect" class="block text-[13px]  text-black">Choose one of your offered skills</label>
+          <select name="offeredSkill" id="offeredSkillSelect" class="border-[1px]" required>
             <% if (user && user.skillsOffered && user.skillsOffered.length > 0) { %>
               <% user.skillsOffered.forEach(skill => { %>
                 <option value="<%= skill %>"><%= skill %></option>
@@ -140,16 +141,16 @@
             <% } %>
           </select>
         </div>
-        <div class="mb-5">
-          <label for="wantedSkillsSelect" class="block text-lg mb-2 dark:text-gray-300">Choose one of their wanted skills</label>
-          <select name="wantedSkill" id="wantedSkillsSelect" class="w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 text-gray-900 dark:text-white" required>
+        <div class="">
+          <label for="wantedSkillsSelect" class="block text-[13px]  text-black ">Choose one of their wanted skills</label>
+          <select name="wantedSkill" id="wantedSkillsSelect" class="" required>
           </select>
         </div>
         <div class="mb-6">
-          <label for="message" class="block text-lg mb-2 dark:text-gray-300">Message</label>
-          <textarea name="message" id="message" rows="4" class="w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 text-gray-900 dark:text-white" required placeholder="Hi! I can teach X and would love to learn Y..."></textarea>
+          <label for="message" class="block text-black">Message</label>
+          <textarea name="message" id="message" rows="4" class=" bg-[#FFFFFF] p-2 border-[1px] outline-none" required placeholder="Hi! I can teach X and would love to learn Y..."></textarea>
         </div>
-        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-green-500 text-white py-3 rounded-lg font-bold text-xl hover:scale-105 transition">
+        <button type="submit" class="bg-black text-white px-4">
           Send Swap Request
         </button>
       </form>
