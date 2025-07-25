@@ -66,14 +66,23 @@
    
       <ul class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-4 mb-20 w-[80rem]">
         <% users.forEach(u => { %>
-          <li class="p-6 bg-[#0A0A0A] text-white font-[100] rounded-[4px]">
+          <li class=" p-4 bg-[#0A0A0A] text-white font-[100] rounded-[4px] flex items-center gap-6">
+<% if (user && user.profilePhoto) { %>
+  <div class="w-[100px]">
+    <img src="<%= user.profilePhoto %>" alt="Profile" class="rounded-full">
+  </div>
+<% } else { %>
+  <div class="w-[100px]">
+    <img src="" alt="Default Profile" class="rounded-full">
+  </div>
+<% } %>
 
+
+<section>
             <div class="">
               <strong class="">Name:</strong>
               <span class=""><%= u.name %></span>
-            </div>
-        
-            
+            </div>    
             <div class="">
               <strong class="">Offers:</strong>
               <span class=""><%= Array.isArray(u.skillsOffered) ? u.skillsOffered.join(", ") : "N/A" %></span>
@@ -95,7 +104,9 @@
             <% } %>
           </li>
         <% }) %>
+</section>
       </ul>
+
     <% } else if (query && users.length === 0) { %>
       <div class="text-center my-20">
         <p class="text-3xl text-gray-500 dark:text-gray-400">No users found for "<span class="font-semibold text-black dark:text-white"><%= query %></span>".</p>
@@ -112,14 +123,14 @@
     </div>
 
   <!-- Popup Modal (no changes needed here) -->
-  <div id="popupModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-70 flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl w-full max-w-lg relative modal-content shadow-2xl border border-gray-300 dark:border-gray-700">
+  <div id="popupModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-70 flex items-center justify-center p-4 font-[Outfit]">
+    <div class="bg-[#FFFFFF] text-black p-8 rounded-[5px] w-full max-w-lg relative modal-content shadow-2xl border border-gray-300 dark:border-gray-700">
       <button onclick="closePopup()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl transition-colors duration-200">&times;</button>
       <form id="swapForm" method="POST">
-        <h3 class="text-3xl font-bold mb-6 text-center dark:text-white">Send Swap Request</h3>
+        <h3 class="text-3xl font-bold mb-6 text-center text-black">Send Swap Request</h3>
         <div class="mb-5">
-          <label for="offeredSkillSelect" class="block text-lg mb-2 dark:text-gray-300">Choose one of your offered skills</label>
-          <select name="offeredSkill" id="offeredSkillSelect" class="w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 text-gray-900 dark:text-white" required>
+          <label for="offeredSkillSelect" class="block text-lg mb-2 text-black">Choose one of your offered skills</label>
+          <select name="offeredSkill" id="offeredSkillSelect" class="border-[1px]  " required>
             <% if (user && user.skillsOffered && user.skillsOffered.length > 0) { %>
               <% user.skillsOffered.forEach(skill => { %>
                 <option value="<%= skill %>"><%= skill %></option>
