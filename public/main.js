@@ -4,6 +4,7 @@
 
     function openPopup(userId, skillsWantedJson) {
       try {
+        document.body.style.overflow = 'hidden'; 
         const skills = JSON.parse(skillsWantedJson);
         form.action = `/swap-request/${userId}`;
         wantedSkillsSelect.innerHTML = "";
@@ -19,11 +20,12 @@
         }
         popup.classList.remove("hidden");
       } catch (err) {
-        alert("⚠️ Failed to load skills. Please try again.");
+        alert(" Failed to load skills. Please try again.");
       }
     }
 
     function closePopup() {
+      document.body.style.overflow = 'auto'; 
       popup.classList.add("hidden");
       form.action = "#";
       wantedSkillsSelect.innerHTML = "";

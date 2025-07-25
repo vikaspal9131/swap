@@ -126,7 +126,7 @@
   <div id="popupModal" class="fixed inset-0 z-50 hidden backdrop-blur-sm bg-black/30 flex items-center justify-center p-4 font-[Outfit]">
 
     <div class="bg-[#FFFFFF] text-black p-[25px] rounded-[5px] relative modal-content w-[350px] ">
-      <button onclick="closePopup()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl transition-colors duration-200">&times;</button>
+      <button onclick="closePopup()" class="absolute top-4 right-4 text-black hover:text-gray-400  text-1xl transition-colors duration-200"><i class="ri-close-fill"></i></button>
       <form id="swapForm" method="POST">
         <h3 class="text-xl font-semibold  text-start text-black font-[Outfit] mb-[10px]">Send Swap Request</h3>
         <div class="mb-5">
@@ -134,7 +134,7 @@
           <select name="offeredSkill" id="offeredSkillSelect" class="border-[1px] w-full outline-none text-[13px] py-[6px] px-[2px] rounded-[4px]" required>
             <% if (user && user.skillsOffered && user.skillsOffered.length > 0) { %>
               <% user.skillsOffered.forEach(skill => { %>
-                <option value="<%= skill %>"><%= skill %></option>
+                <option  value="<%= skill %>"><%= skill %></option>
               <% }) %>
             <% } else { %>
               <option value="" disabled selected>No skills offered</option>
