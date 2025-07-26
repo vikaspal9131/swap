@@ -1,0 +1,11 @@
+
+   /* Hide scrollbar completely */
+    html, body {
+      scrollbar-width: none !important;          /* Firefox */
+      -ms-overflow-style: none !important;       /* IE and Edge */
+    }
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none !important;                  /* Chrome, Safari */
+    }
+ 

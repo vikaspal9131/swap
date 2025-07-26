@@ -1,59 +1,54 @@
-    const popup = document.getElementById("popupModal");
-    const form = document.getElementById("swapForm");
-    const wantedSkillsSelect = document.getElementById("wantedSkillsSelect");
 
-    function openPopup(userId, skillsWantedJson) {
-      try {
-        document.body.style.overflow = 'hidden'; 
-        const skills = JSON.parse(skillsWantedJson);
-        form.action = `/swap-request/${userId}`;
-        wantedSkillsSelect.innerHTML = "";
-        if (skills.length === 0) {
-          wantedSkillsSelect.innerHTML = `<option disabled selected>No skills listed</option>`;
-        } else {
-          skills.forEach(skill => {
-            const option = document.createElement("option");
-            option.value = skill;
-            option.textContent = skill;
-            wantedSkillsSelect.appendChild(option);
-          });
-        }
-        popup.classList.remove("hidden");
-      } catch (err) {
-        alert(" Failed to load skills. Please try again.");
-      }
-    }
+  const popup = document.getElementById("popupModal");
+  const form = document.getElementById("swapForm");
+  const wantedSkillsSelect = document.getElementById("wantedSkillsSelect");
 
-    function closePopup() {
-      document.body.style.overflow = 'auto'; 
-      popup.classList.add("hidden");
-      form.action = "#";
+  function openPopup(userId, skillsWantedJson) {
+    try {
+      document.body.style.overflow = 'hidden';
+      const skills = JSON.parse(skillsWantedJson);
+      form.action = `/swap-request/${userId}`;
       wantedSkillsSelect.innerHTML = "";
-      form.reset();
-    }
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closePopup();
-    });
-
-    popup.addEventListener("click", (e) => {
-      if (e.target === popup) closePopup();
-    });
-
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    if (themeToggleBtn) {
-      themeToggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        document.body.classList.toggle('light');
-        localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
-      });
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark") {
-        document.body.classList.add("dark");
-        document.body.classList.remove("light");
+      if (skills.length === 0) {
+        wantedSkillsSelect.innerHTML = `<option disabled selected>No skills listed</option>`;
+      } else {
+        skills.forEach(skill => {
+          const option = document.createElement("option");
+          option.value = skill;
+          option.textContent = skill;
+          wantedSkillsSelect.appendChild(option);
+        });
       }
-    }
 
+      popup.classList.remove("hidden");
+    } catch (err) {
+      alert("Failed to load skills. Please try again.");
+    }
+  }
+
+  function closePopup() {
+    document.body.style.overflow = 'auto';
+    popup.classList.add("hidden");
+    form.action = "#";
+    wantedSkillsSelect.innerHTML = "";
+    form.reset();
+  }
+
+  function handleSubmit() {
+    closePopup(); 
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closePopup();
+  });
+
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) closePopup();
+  });
+
+
+   
     const searchInput = document.getElementById("searchInput");
     const phrases = [
       "Search for 'Web Development'",
