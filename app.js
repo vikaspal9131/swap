@@ -4,32 +4,30 @@ const MongoStore = require("connect-mongo");
 const path = require("path");
 const dotenv = require("dotenv");
 
-dotenv.config();
+dotenv.config(); // Ye toh hai hi, good!
 const app = express();
 
-
-
-// MongoDB
-require("./config/db")();
+// MongoDB connection
+require("./config/db")(); // Ye bhi theek hai
 
 // Middleware
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from 'public' folder
-
-
-
-
-
-
+// --- Yahan hai asal change, session configuration mein ---
 app.use(session({
-  secret: "skill-secret",
+  secret: process.env.SESSION_SECRET || "a_very_secret_key_for_development_only", // IMPORTANT: 'skill-secret' ko ab dotenv se le raha hu ya ek fallback
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 30, // 30 din (milliseconds mein) - user ab 30 din tak logged in rahega
+    httpOnly: true, // Browser JavaScript se cookie ko access nahi kar payega (security)
+    secure: process.env.NODE_ENV === 'production', // Production mein hi HTTPS pe cookie bhejo
+    sameSite: 'lax' // CSRF protection
+  }
 }));
+// --- Session config change done! ---
 
 // EJS
 app.set("view engine", "ejs");
@@ -41,9 +39,6 @@ app.use("/", require("./routes/swap"));
 app.use("/", require("./routes/main"));
 app.use("/", require("./routes/register"));
 app.use("/", require("./routes/profile"));
-
-
-
 
 // Start
 const PORT = process.env.PORT || 3000;
