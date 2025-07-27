@@ -36,7 +36,8 @@
   }
 
   function handleSubmit() {
-    closePopup(); 
+    closePopup(); // hide popup before redirect
+    // Let form submit normally
   }
 
   document.addEventListener("keydown", (e) => {

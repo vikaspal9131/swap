@@ -22,7 +22,7 @@ router.post("/swap-request/:toUserId", async (req, res) => {
   });
 
   // Final: Redirect to home
-  res.redirect("/");
+  res.render("main");
 });
 
 module.exports = router;
