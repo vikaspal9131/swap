@@ -8,16 +8,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 </head>
-<body class="dark bg-[#0A0A0A] text-white min-h-screen flex flex-col font-[Outfit] font-medium">
+<body class=" min-h-screen flex flex-col font-[Outfit] font-medium">
 
   <!-- Main Content -->
-  <main class="flex-grow flex items-center justify-center px-4">
-    <div class="w-full max-w-md bg-[#171717] p-8 rounded-2xl shadow-xl border-[1px] border-[#424242] mt-10">
+  <main class="flex-grow flex items-center justify-center px-4 ">
+    <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl border-[1px] border-[#E5E5E5] mt-10">
       <div class="flex justify-between items-center mb-1">
         <h2 class="text-lg font-semibold">Create an account</h2>
         <a href="/login" class="text-sm text-white hover:underline font-[300]">Login</a>
       </div>
-      <p class="text-sm text-[#C8D4D4] mb-6 font-[300]">Enter your details below to create your account</p>
+      <p class="text-sm text-[#737373] mb-6 font-[300]">Enter your details below to create your account</p>
 
       <% if (error) { %>
         <div class="bg-red-600 text-white p-2 rounded mb-4 text-sm text-center">
@@ -27,29 +27,29 @@
 
       <form action="/register" method="POST" onsubmit="return syncSkills()" class="space-y-4">
         <input type="text" name="name" placeholder="Username" autocomplete="off"
-          class="w-full bg-[#212121] border border-[#171717] text-white placeholder-[#C8D4D4] font-[200] px-4 py-2 rounded focus:outline-none" required>
+          class="placeholder-[#737373] font-[200] w-full mt-1 px-4 py-2 rounded text-black border border-[#E5E5E5] outline-none " required>
 
         <input type="email" name="email" placeholder="example12@gmail.com" autocomplete="off"
-          class="w-full bg-[#212121] border border-[#171717] text-white placeholder-[#C8D4D4] font-[200] px-4 py-2 rounded focus:outline-none" required>
+          class="placeholder-[#737373] font-[200] w-full mt-1 px-4 py-2 rounded text-black border border-[#E5E5E5] outline-none " required>
 
         <input type="password" name="password" placeholder="••••••••"
-          class="w-full bg-[#212121] border border-[#171717] text-white placeholder-[#C8D4D4] font-[200] px-4 py-2 rounded focus:outline-none" required>
+          class="placeholder-[#737373] font-[200] w-full mt-1 px-4 py-2 rounded text-black border border-[#E5E5E5] outline-none " required>
 
         <!-- Skills Offered -->
         <div>
-          <label class="text-sm block mb-1 font-[300]">Skills you offer</label>
+          <label class="text-sm block mb-1 font-[400]">Skills you offer</label>
           <div class="max-h-[60px] overflow-x-auto overflow-y-auto whitespace-nowrap flex flex-wrap gap-2 mb-1" id="skillsOfferedContainer"></div>
           <input type="text" id="skillsOfferedInput" placeholder="Type and press Enter"
-            class="w-full bg-[#212121] border border-[#171717] text-white placeholder-[#C8D4D4] font-[200] px-4 py-2 rounded focus:outline-none" />
+            class="placeholder-[#737373] font-[200] w-full mt-1 px-4 py-2 rounded text-black border border-[#E5E5E5] outline-none " />
           <input type="hidden" name="skillsOffered" id="skillsOfferedHidden">
         </div>
 
         <!-- Skills Wanted -->
         <div>
-          <label class="text-sm block mb-1 font-[300]">Skills you want</label>
+          <label class="text-sm block mb-1 font-[400]">Skills you want</label>
           <div class="max-h-[60px] overflow-x-auto overflow-y-auto whitespace-nowrap flex flex-wrap gap-2 mb-2  " id="skillsWantedContainer"></div>
           <input type="text" id="skillsWantedInput" placeholder="Type and press Enter"
-            class="w-full bg-[#212121] border-1 border-[#171717] text-white placeholder-[#C8D4D4] font-[200] px-4 py-2 rounded focus:outline-none  " />
+            class="placeholder-[#737373] font-[200] w-full mt-1 px-4 py-2 rounded text-black border border-[#E5E5E5] outline-none  " />
           <input autocomplete="off" type="hidden" name="skillsWanted" id="skillsWantedHidden">
         </div>
 
