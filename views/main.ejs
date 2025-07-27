@@ -1,178 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Swap</title>
+    <meta charset="UTF-8">
+    <title>Swap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-
-
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
-  <style>
-     html, body {
-      scrollbar-width: none !important;          /* Firefox */
-      -ms-overflow-style: none !important;       /* IE and Edge */
-    }
-    html::-webkit-scrollbar,
-    body::-webkit-scrollbar {
-      display: none !important;                  /* Chrome, Safari */
-    }
- 
-  </style>
+    <style>
+        html, body {
+            scrollbar-width: none !important; /* Firefox */
+            -ms-overflow-style: none !important; /* IE and Edge */
+        }
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none !important; /* Chrome, Safari */
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-white font-[Outfit] " >
-  <div class="container    ">
+<body class="min-h-screen bg-white font-[Outfit]">
+    <div class="container mx-auto">
+        <nav class="main-nav flex items-center justify-center p-4 sticky top-0 z-50 backdrop-blur-lg bg-opacity-70">
+            <div class="flex justify-between items-center w-full md:w-[80rem] px-4">
+                <a href="/" class="text-2xl text-black">
+                    <i class="ri-blaze-line"></i> Swap
+                </a>
 
-    
-    <nav class="main-nav flex items-center justify-center p-4 sticky top-0 z-50 backdrop-blur-lg bg-opacity-70">
-      <div class="flex justify-between items-center w-[80rem]">
-        <a href="/" class="text-1xl text-black ">
-         <i class="ri-blaze-line"></i> Swap
-        </a> 
-
-        <div class="flex items-center space-x-6">
-          <a href="/" class="text-[14px] font-[400]">Home</a>
-          <a href="/" class="text-[14px]">Request</a>
-          <a href="/" class="text-[14px]">Dashbord</a>
-
-          <% if (user) { %>
-            <a href="/profile" class="w-[30px]  rounded-full ">
-              <img src="https://avatars.githubusercontent.com/u/113900393?v=4" alt="" class="rounded-full">
-            </a>
-            <!-- <form action="/logout" method="POST">
-              <button type="submit" class="text-lg font-medium ">Logout</button>
-            </form> -->
-          <% } else { %>
-            <a href="/login" class="text-[14px] hover:text-blue-500 transition-colors duration-300">Login</a>
-          <% } %>
-  
-        </div>
-      </div>
-    </nav>
-
-    <header class="text-center my-16">
-      <h1 class="text-[50px] font-semibold text-[#171717] tracking-tight">Build future by sharing  knowlage</h1>
-      <p class="text-[16px]">Connect with learners like you and build meaningful connections. Share your skills and get something  valuable <br> in return. Grow together through true collaboration — a journey to learn, teach, and thrive.</p>
-
-     <div class="mt-12 max-w-2xl mx-auto">
-        <form action="/search" method="POST">
-          <div class="relative flex items-center rounded-[10px] border-[1px] border-gray-500 text-black">
-            <i class="fas fa-search mx-4 text-gray-400 text-xl"></i>
-            <input type="text" name="query" id="searchInput" placeholder="" class="w-full bg-transparent focus:outline-none text-black" value="<%= query || '' %>" required>
-            <button class="px-8 py-3 ml-4 text-black  rounded-full flex gap-2 items-center justify-center font-[400] ">  Search <i class="ri-search-2-line mt-1"></i></button>
-          </div>
-        </form>
-      </div> 
-    </header>
-
-    <% if (users && users.length > 0) { %>
-    
-     <div class="flex items-center justify-center">
-
-   
-      <ul class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-4 mb-20 w-[80rem]">
-        <% users.forEach(u => { %>
-          <li class=" p-4 bg-[#0A0A0A] text-white font-[100] rounded-[4px] flex items-center gap-6">
-<% if (user && user.profilePhoto) { %>
-  <div class="w-[100px]">
-    <img src="<%= user.profilePhoto %>" alt="Profile" class="rounded-full">
-  </div>
-<% } else { %>
-  <div class="w-[100px]">
-    <img src="" alt="Default Profile" class="rounded-full">
-  </div>
-<% } %>
-
-
-<section>
-            <div class="">
-              <strong class="">Name:</strong>
-              <span class=""><%= u.name %></span>
-            </div>    
-            <div class="">
-              <strong class="">Offers:</strong>
-              <span class=""><%= Array.isArray(u.skillsOffered) ? u.skillsOffered.join(", ") : "N/A" %></span>
+                <div class="flex items-center space-x-4 sm:space-x-6">
+                    <a href="/" class="text-[14px] font-[400] hidden sm:block"> Home</a>
+                    <a href="/" class="text-[14px] hidden sm:block">Request</a>
+                    <a href="/" class="text-[14px] hidden sm:block">Dashboard</a>
+                    <% if (user) { %>
+                        <a href="/profile" class="w-[30px] rounded-full">
+                            <img src="https://avatars.githubusercontent.com/u/113900393?v=4" alt="" class="rounded-[10px]">
+                        </a>
+                    <% } else { %>
+                        <a href="/login" class="text-[14px] hover:text-blue-500 transition-colors duration-300">Login</a>
+                    <% } %>
+                </div>
             </div>
-            <div class="">
-              <strong class="">Wants:</strong>
-              <span class=""><%= Array.isArray(u.skillsWanted) ? u.skillsWanted.join(", ") : "N/A" %></span>
+        </nav>
+
+        <header class="text-left md:text-center my-8 md:my-16 px-4">
+            <h1 class="text-3xl sm:text-4xl lg:text-[50px] font-semibold text-[#171717] tracking-tight leading-tight">Build future by sharing knowlage</h1>
+            <p class="text-sm sm:text-[16px] mt-4">Connect with learners like you and build meaningful connections. Share your skills and get something valuable <br class="hidden sm:inline"> in return. Grow together through true collaboration — a journey to learn, teach, and thrive.</p>
+            <div class="mt-8 md:mt-12 max-w-xl mx-auto">
+                <form action="/search" method="POST">
+                    <div class="relative flex items-center rounded-[10px] border-[1px] border-gray-500 text-black p-2 sm:p-0">
+                        <i class="fas fa-search mx-2 sm:mx-4 text-gray-400 text-lg sm:text-xl"></i>
+                        <input type="text" name="query" id="searchInput" placeholder="Search for skills..." class="w-full bg-transparent focus:outline-none text-black py-2" value="<%= query || '' %>" required>
+                        <button class="px-4 sm:px-8 py-2 sm:py-3 ml-2 sm:ml-4 text-black rounded-full flex gap-1 sm:gap-2 items-center justify-center font-[400] whitespace-nowrap"> Search <i class="ri-search-2-line mt-1"></i></button>
+                    </div>
+                </form>
             </div>
-            <% if (user && user._id.toString() !== u._id.toString()) { %>
-              <form action="/swap-request/<%= u._id %>" method="POST" class="mt-6">
-                <button type="button" onclick="openPopup('<%= u._id %>', '<%= JSON.stringify(u.skillsWanted || []) %>')" class=" px-[10px] py-[3px] bg-white text-black font-[500] rounded-[3px]">
-                  Send Swap Request
+        </header>
+
+        <% if (users && users.length > 0) { %>
+            <div class="flex items-center justify-center px-4">
+                <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10 md:mb-20 w-full md:w-[80rem]">
+                    <% users.forEach(u => { %>
+                        <li class="p-4 bg-[#0A0A0A] text-white font-[100] rounded-[4px] flex items-center gap-4 sm:gap-6"> <% if (user && user.profilePhoto) { %>
+                                <div class="w-24 h-24 flex-shrink-0"> <img src="<%= user.profilePhoto %>" alt="Profile" class="rounded-full w-full h-full object-cover">
+                                </div>
+                            <% } else { %>
+                                <div class="w-24 h-24 flex-shrink-0"> <img src="https://i.pravatar.cc/200" alt="Default Profile" class="rounded-full w-full h-full object-cover">
+                                </div>
+                            <% } %>
+
+                            <section class="w-full"> <div class="mb-1">
+                                    <strong class="text-gray-300">Name:</strong>
+                                    <span class="text-white"><%= u.name %></span>
+                                </div>
+                                <div class="mb-1">
+                                    <strong class="text-gray-300">Offers:</strong>
+                                    <span class="text-green-400"><%= Array.isArray(u.skillsOffered) ? u.skillsOffered.join(", ") : "N/A" %></span>
+                                </div>
+                                <div class="mb-1">
+                                    <strong class="text-gray-300">Wants:</strong>
+                                    <span class="text-blue-400"><%= Array.isArray(u.skillsWanted) ? u.skillsWanted.join(", ") : "N/A" %></span>
+                                </div>
+                                <% if (user && user._id.toString() !== u._id.toString()) { %>
+                                    <form action="/swap-request/<%= u._id %>" method="POST" class="mt-4"> <button type="button" onclick="openPopup('<%= u._id %>', '<%= JSON.stringify(u.skillsWanted || []) %>')" class="px-3 py-1 bg-white text-black font-[500] rounded-[3px] text-sm">
+                                            Send Swap Request
+                                        </button>
+                                    </form>
+                                <% } else if (user && user._id.toString() === u._id.toString()) { %>
+                                    <p class="text-sm text-gray-500 italic mt-4 text-left">This is you.</p> <% } else { %>
+                                    <p class="text-sm text-red-400 italic mt-4 text-left">Please login to send request</p> <% } %>
+                            </section>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } else if (query && users.length === 0) { %>
+            <div class="text-center my-10 md:my-20 px-4">
+                <p class="text-xl sm:text-3xl text-gray-500">No users found for "<span class="font-semibold text-black"><%= query %></span>".</p>
+                <p class="mt-2 sm:mt-4 text-md sm:text-lg text-gray-500">Try a different skill or check your spelling.</p>
+            </div>
+        <% } else { %>
+            <div class="text-center my-10 md:my-20 px-4">
+                <p class="text-xl sm:text-3xl text-gray-500">Start by searching for a skill you want to learn!</p>
+                <p class="mt-2 sm:mt-4 text-md sm:text-lg text-gray-500">Discover a community ready to share their expertise.</p>
+            </div>
+        <% } %>
+    </div>
+
+    <div id="popupModal" class="fixed inset-0 z-50 hidden backdrop-blur-sm bg-black/30 flex items-center justify-center p-4 font-[Outfit]">
+        <div class="bg-[#FFFFFF] text-black p-6 rounded-[5px] relative modal-content w-full max-w-sm mx-auto">
+            <button onclick="closePopup()" class="absolute top-4 right-4 text-black hover:text-gray-400 text-xl transition-colors duration-200"><i class="ri-close-fill"></i></button>
+            <form id="swapForm" method="POST">
+                <h3 class="text-xl font-semibold text-start text-black font-[Outfit] mb-4">Send Swap Request</h3>
+                <div class="mb-4">
+                    <label for="offeredSkillSelect" class="block text-sm text-black mb-1">Choose one of your offered skills</label>
+                    <select name="offeredSkill" id="offeredSkillSelect" class="border-[1px] w-full outline-none text-sm py-2 px-2 rounded-[4px]" required>
+                        <% if (user && user.skillsOffered && user.skillsOffered.length > 0) { %>
+                            <% user.skillsOffered.forEach(skill => { %>
+                                <option value="<%= skill %>"><%= skill %></option>
+                            <% }) %>
+                        <% } else { %>
+                            <option value="" disabled selected>No skills offered</option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="wantedSkillsSelect" class="block text-sm text-black mb-1">Choose one of their wanted skills</label>
+                    <select name="wantedSkill" id="wantedSkillsSelect" class="border-[1px] w-full outline-none text-sm py-2 px-2 rounded-[4px]" required>
+                    </select>
+                </div>
+                <div class="mb-6">
+                    <label for="message" class="block text-black mt-2 text-sm mb-1">Message</label>
+                    <textarea name="message" id="message" rows="4" class="bg-[#FFFFFF] w-full h-24 resize-none p-2 border-[1px] outline-none text-sm rounded-[4px]" required placeholder="Hi! I can teach X and would love to learn Y..."></textarea>
+                </div>
+                <button type="submit" class="bg-black text-white px-4 w-full rounded-[4px] py-2">
+                    Send Swap Request
                 </button>
-              </form>
-            <% } else if (user && user._id.toString() === u._id.toString()) { %>
-              <p class="text-md text-gray-500 italic mt-6 text-center">This is you.</p>
-            <% } else { %>
-              <p class="text-md text-red-400 italic mt-6 text-center">Please login to send request</p>
-            <% } %>
-          </li>
-        <% }) %>
-</div>
-
-</section>
-      </ul>
-
-    <% } else if (query && users.length === 0) { %>
-      <div class="text-center my-20">
-        <p class="text-3xl text-gray-500 dark:text-gray-400">No users found for "<span class="font-semibold text-black dark:text-white"><%= query %></span>".</p>
-        <p class="mt-4 text-lg text-gray-500 dark:text-gray-400">Try a different skill or check your spelling.</p>
-      </div>
-    <% } else { %>
-      <div class="text-center my-20">
-        <p class="text-3xl text-gray-500 dark:text-gray-400">Start by searching for a skill you want to learn!</p>
-        <p class="mt-4 text-lg text-gray-500 dark:text-gray-400">Discover a community ready to share their expertise.</p>
-      </div>
-    <% } %>
-  </div>
-
+            </form>
+        </div>
     </div>
-
-  <!-- Popup Modal (no changes needed here) -->
-  <div id="popupModal" class="fixed inset-0 z-50 hidden backdrop-blur-sm bg-black/30 flex items-center justify-center p-4 font-[Outfit]">
-
-    <div class="bg-[#FFFFFF] text-black p-[25px] rounded-[5px] relative modal-content w-[350px] ">
-      <button onclick="closePopup()" class="absolute top-4 right-4 text-black hover:text-gray-400  text-1xl transition-colors duration-200"><i class="ri-close-fill"></i></button>
-      <form id="swapForm" method="POST">
-        <h3 class="text-xl font-semibold  text-start text-black font-[Outfit] mb-[10px]">Send Swap Request</h3>
-        <div class="mb-5">
-          <label for="offeredSkillSelect" class="block text-[15px] text-black">Choose one of your offered skills</label>
-          <select name="offeredSkill" id="offeredSkillSelect" class="border-[1px] w-full  outline-none text-[13px] py-[6px] px-[2px] rounded-[4px]" required>
-            <% if (user && user.skillsOffered && user.skillsOffered.length > 0) { %>
-              <% user.skillsOffered.forEach(skill => { %>
-                <option  value="<%= skill %>"><%= skill %></option>
-              <% }) %>
-            <% } else { %>
-              <option value="" disabled selected>No skills offered</option>
-            <% } %>
-          </select>
-        </div>
-        <div class="">
-          <label for="wantedSkillsSelect" class="block text-[15px]  text-black ">Choose one of their wanted skills</label>
-          <select name="wantedSkill" id="wantedSkillsSelect" class="border-[1px] w-full outline-none text-[13px] py-[6px] px-[2px] rounded-[4px]" required>
-          </select>
-        </div>
-        <div class="mb-6">
-          <label for="message" class="block text-black mt-4 text-[15px]">Message</label>
-          <textarea name="message" id="message" rows="4" class=" bg-[#FFFFFF] w-full overflow-y-auto h-[100px] resize-none p-2 border-[1px] outline-none text-[14px]" required placeholder="Hi! I can teach X and would love to learn Y..."></textarea>
-        </div>
-        <button type="submit" class="bg-black text-white px-4 w-full rounded-[4px] py-[3px]">
-          Send Swap Request
-        </button>
-      </form>
-    </div>
-  </div>
-
 
 </body>
 <script src="/main.js"></script>
